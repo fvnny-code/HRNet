@@ -1,12 +1,11 @@
- import Footer from "../../layouts/footer/Footer";
-import Header from "../../layouts/header/Header";
+import "../../index.css"
 
  export default function Home(){
     return(
         <>
-         <Header />
-         
-        <Footer />
+            <h2>CREATE A NEW EMPLOYEE</h2>
+
+           
         </>
        
     )
