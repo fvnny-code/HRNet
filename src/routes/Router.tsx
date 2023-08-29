@@ -1,15 +1,15 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Header from "../layouts/header/Header";
-import Footer from "../layouts/footer/Footer";
-
+// import Header from "../layouts/header/Header";
+// import Footer from "../layouts/footer/Footer";
+import Layout from "../layouts/Layout";
 export default function Router() {
   return (
     <BrowserRouter>
-    <Header/>
+      <Layout>
         <Routes>
-            <Route element= {<Navigate replace to="/home"/>} path="/"/>
+          <Route element={<Navigate replace to="/home" />} path="/" />
         </Routes>
-<Footer />
+      </Layout>
     </BrowserRouter>
   );
 }
