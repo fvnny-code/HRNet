@@ -1,6 +1,5 @@
 import { NavLink } from "react-router-dom";
 
-import "../../index.css";
 import "./header.css";
 import Logo from "../../assets/wealthHealth_logo-noBG.png";
 
