@@ -28,7 +28,7 @@ select{
     appearance: none;
     background-image: url('../../assets/caret-down-solid.svg');
     background-repeat: no-repeat;
-    background-position: 95% 0;
+    background-position: 98% 0;
     
 }
 
@@ -45,3 +45,4 @@ fieldset {
 legend {
   color: var(--green-highlight);
 }
+
