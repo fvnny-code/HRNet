@@ -8,11 +8,11 @@ export default function Header() {
     <>
       <header>
         <nav>
-          <NavLink to="/">
+          <NavLink to="/home">
             <img src={Logo} alt="Wealth Health logo" className="logo" />
           </NavLink>
           <h1>Wealth Heath</h1>
-          <NavLink to="/">View Current Employees</NavLink>
+          <NavLink to="/employees">View Current Employees</NavLink>
         </nav>
       </header>
     </>

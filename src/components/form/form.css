@@ -1,15 +1,16 @@
 label {
-  line-height: 2;
   text-align: left;
   display: block;
-  margin-bottom: 13px;
-  margin-top: 20px;
+  margin-bottom: 10px;
+  margin-top: 10px;
   color: var(--green-highlight);
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: 200;
 }
 
-input, select {
+input,
+select {
+  appearance: none;
   box-sizing: border-box;
   width: 100%;
   border-radius: 10px;
@@ -18,18 +19,29 @@ input, select {
   padding: 10px 15px;
   margin-bottom: 10px;
 
-  font-size: 14px;
+  font-size: 1, 2rem;
 
   background-color: transparent;
   color: var(--blackish);
 }
 
-select{
-    appearance: none;
-    background-image: url('../../assets/caret-down-solid.svg');
-    background-repeat: no-repeat;
-    background-position: 98% 0;
-    
+select,
+input[type="date"],
+input[type="number"] {
+  background-repeat: no-repeat;
+  background-position: 98% 0;
+}
+select {
+  background-image: url("../../assets/caret-down-solid.svg");
+}
+input[type="date"] {
+    background-image: url("../../assets/calendar-days-solid.svg");
+
+}
+input[type="number"] {
+ 
+    background-image: url("../../assets/sort-solid.svg");
+
 }
 
 fieldset {
@@ -45,4 +57,3 @@ fieldset {
 legend {
   color: var(--green-highlight);
 }
-
