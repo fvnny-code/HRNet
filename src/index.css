@@ -153,5 +153,6 @@ button:focus-visible {
 .container {
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
+  align-items: center;
+  justify-content: center;
 }

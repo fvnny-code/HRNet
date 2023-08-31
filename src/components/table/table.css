@@ -1,0 +1,34 @@
+/* inputs */
+.select-entries,
+.search-table {
+  height: 40px;
+  margin: 0 01rem;
+}
+
+.select-entries {
+  width: 80px;
+}
+
+.search-table {
+  max-width: 40%;
+}
+.btn-pagination {
+  width: 60px;
+  padding-bottom: 0.5rem;
+}
+
+/* layout */
+
+.flex-start {
+  display: flex;
+  align-items: center;
+  width: 50%;
+  padding: 0 1rem;
+}
+.flex-end {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 50%;
+  padding: 0 1rem;
+}
