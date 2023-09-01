@@ -1,12 +1,25 @@
+
 import { useEffect, useState } from "react";
 
 import SelectMaxEntries from "./SelectMaxEntries";
 import InputSearch from "./InputSearch";
 import EntriesCounter from "./EntriesCounter";
 import TablePagination from "./TablePagination";
+import Table from "./Table";
 import "../../index.css"
 
-export default function TableWrapper({ id, cols, items }: Props) {
+export default function TableWrapper({  items }: Props) {
+  const cols: Array<string> = [
+    "First Name",
+    "Last Name",
+    "Start Date",
+    "Date of Birth",
+    "Street",
+    "City",
+    "State",
+    "Zip Code",
+    "Department",
+  ]
   const [query, setQuery] = useState("");
   const [maxEntries, setMaxEntries] = useState(10);
   const [results, setResults] = useState(items.slice(0, 10));
@@ -33,7 +46,7 @@ export default function TableWrapper({ id, cols, items }: Props) {
         <SelectMaxEntries setFunction={setMaxEntries} />
         <InputSearch setFunction={setQuery}/>
       </div>
-      {/* <Table cols={cols} items={results} /> */}
+      <Table cols={cols} items={results} />
       <div className="container">
         <EntriesCounter
           resultLength={resultLength}
