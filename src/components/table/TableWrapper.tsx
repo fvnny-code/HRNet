@@ -5,24 +5,29 @@ import SelectMaxEntries from "./SelectMaxEntries";
 import InputSearch from "./InputSearch";
 import EntriesCounter from "./EntriesCounter";
 import TablePagination from "./TablePagination";
-import Table from "./Table";
+// import Table from "./Table";
+
+/**
+ * import react-table component with included filters, sorting and pagination
+ */
+
 import "../../index.css"
 
 export default function TableWrapper({  items }: Props) {
-  const cols: Array<string> = [
-    "First Name",
-    "Last Name",
-    "Start Date",
-    "Date of Birth",
-    "Street",
-    "City",
-    "State",
-    "Zip Code",
-    "Department",
-  ]
+  // const cols: Array<string> = [
+  //   "First Name",
+  //   "Last Name",
+  //   "Start Date",
+  //   "Date of Birth",
+  //   "Street",
+  //   "City",
+  //   "State",
+  //   "Zip Code",
+  //   "Department",
+  // ]
   const [query, setQuery] = useState("");
   const [maxEntries, setMaxEntries] = useState(10);
-  const [results, setResults] = useState(items.slice(0, 10));
+  // const [results, setResults] = useState(items.slice(0, 10));
   const [resultLength, setResultLength] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -33,11 +38,11 @@ export default function TableWrapper({  items }: Props) {
     );
     setResultLength(filteredItems.length);
     // Slice results using the max entries limit & the current page
-    const slicedItems = filteredItems.slice(
-      maxEntries * currentPage - maxEntries,
-      maxEntries * currentPage
-    );
-    setResults(slicedItems);
+    // const slicedItems = filteredItems.slice(
+    //   maxEntries * currentPage - maxEntries,
+    //   maxEntries * currentPage
+    // );
+    // setResults(slicedItems);
   }, [query, maxEntries, currentPage]);
 
   return (
@@ -46,7 +51,7 @@ export default function TableWrapper({  items }: Props) {
         <SelectMaxEntries setFunction={setMaxEntries} />
         <InputSearch setFunction={setQuery}/>
       </div>
-      <Table cols={cols} items={results} />
+      {/* <Table cols={cols} items={results} /> */}
       <div className="container">
         <EntriesCounter
           resultLength={resultLength}

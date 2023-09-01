@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
-import { useGlobalState } from "../../GlobalState";
-import TableWrapper from "../../components/table/TableWrapper";
+import { useSelector } from "react-redux";
+
+// import TableWrapper from "../../components/table/TableWrapper";
 
 export default function Employees() {
   const cols: Array<string> = [
@@ -14,18 +15,13 @@ export default function Employees() {
     "Zip Code",
     "Department",
   ]
-  const {state} = useGlobalState()
-  
-  const items: Array<Array<string>> = state.map(employee => {
-    if(employee !== undefined) {
-        return Object.values(employee)
-      }else return []
-  })
+  const employees = useSelector ((s:any)=> s.employees)
+  console.log(employees)
 
   return (
     <>
       <h2>CURRENT EMPLOYEES</h2>
-      <TableWrapper id="currentEmployeesTable" cols={cols} items={items} />
+      {/* <TableWrapper id="currentEmployeesTable" cols={cols} items={employees} /> */}
       <NavLink to="/home">Home</NavLink>
     </>
   );

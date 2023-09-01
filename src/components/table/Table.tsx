@@ -1,5 +1,7 @@
 import "./table.css"
-
+ /**
+  * import react-table library so as to create the ctable component with included filters, sorting, and pagination
+  */
 export default function Table({ cols, items }: Props) {
     
   return (

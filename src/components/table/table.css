@@ -13,7 +13,7 @@
   max-width: 40%;
 }
 .btn-pagination {
-  width: 30px;
+  min-width: 30px;
   /* padding-bottom: 0.5rem; */
   border: none;
 }
