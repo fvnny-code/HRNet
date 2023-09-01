@@ -13,8 +13,9 @@
   max-width: 40%;
 }
 .btn-pagination {
-  width: 60px;
-  padding-bottom: 0.5rem;
+  width: 30px;
+  /* padding-bottom: 0.5rem; */
+  border: none;
 }
 
 /* layout */
@@ -32,18 +33,22 @@
   width: 50%;
   padding: 0 1rem;
 }
+
+
 /* table */
 
 table {
-width: 95%;
-border: 2px solid var(--green-highlight);
-border-radius: 5px;
-margin: auto;
+  font-size: 1.1rem;
+  width: 95%;
+  border: 2px solid var(--green-highlight);
+  border-radius: 5px;
+  margin: auto;
 }
-thead{
-    background-color: var(--light-green);
-    opacity: 0.6;
+thead {
+  background-color: var(--light-green);
+  opacity: 0.6;
 }
-tbody{
-    border : 2px var(--green-highlight) solid;
+tbody {
+  border: 2px var(--green-highlight) solid;
+  text-align: left;
 }

@@ -13,7 +13,7 @@ export default function TablePagination({
   };
 
   return (
-    <div className="flex-end">
+    <div className="flex-end pagination">
       {// if current page is not 1 display "previous page" button
         currentPage !== 1 ? (
           <button className="btn-pagination"

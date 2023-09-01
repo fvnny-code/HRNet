@@ -6,6 +6,7 @@ export default function SelectMenu({ name, options, setFunction }: Props) {
     <div className="select">
       <label htmlFor={name}>{name}</label>
       <select
+     required
         name={name}
         id={name}
         onChange={(e) => {

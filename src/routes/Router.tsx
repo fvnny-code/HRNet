@@ -11,7 +11,9 @@ const Router: React.FunctionComponent<IRouterProps> = () => {
     <BrowserRouter>
       <Layout>
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
+
           <Route path="/employees" element={<Employees />} />
         </Routes>
       </Layout>

@@ -5,7 +5,7 @@ export default function zipCodeInput({ name, setFunction }: Props) {
     <div>
       <label htmlFor={name}>{name}</label>
       <input id={name} name={name} type="number" inputMode="numeric"
-        onChange={(event) => {setFunction(event.target.value)}} className="number">
+        onChange={(event) => {setFunction(event.target.value)}} className="number" required>
       </input>
     </div>
   );

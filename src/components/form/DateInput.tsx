@@ -6,7 +6,7 @@ export default function DateInput({name, setFunction}:Props){
         <div>
             <label htmlFor={name}>{name}</label>
             <input type="date" id={name} name={name} 
-            onChange={(event)=> {setFunction(event.target.value)}}>
+            onChange={(event)=> {setFunction(event.target.value)}} >
             </input>
         </div>
     )

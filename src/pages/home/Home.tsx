@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useGlobalState } from "../../GlobalState";
 import DepartmentSelect from "../../components/form/selectPresets/DepartmentSelect";
-import FieldSet from "../../components/form/Fieldset"
+import FieldSet from "../../components/form/FieldSet";
 import TextInput from "../../components/form/TextInput";
 import StateSelect from "../../components/form/selectPresets/StateSelect";
 import DateInput from "../../components/form/DateInput";
 import ZipCodeInput from "../../components/form/ZipCodeInput";
+import Modal from "../../components/modal/Modal";
 
 import './home.css'
 
@@ -20,7 +21,11 @@ export default function Home() {
   const [state, setState] = useState("");
   const [zipCode, setZipCode] = useState("");
   const [dept, setDept] = useState("");
+  // modal
+  const [modalVisibility, setModalVisibility] = useState(false)
+  const [modalMessage, setModalMessage] = useState("")
 
+// on sbumit, add new employee to globalState
   const { dispatch } = useGlobalState();
   const handleSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
@@ -36,8 +41,11 @@ export default function Home() {
         zipCode: zipCode,
         state: state,
         department: dept,
-      },
-    });
+      }})
+       //display a modal with a success message
+       setModalMessage("Employee " + firstName+ " "+ lastName + " created !")
+       setModalVisibility(true)
+
     const target = event.target as HTMLFormElement;
 
     // reset the form
@@ -47,14 +55,15 @@ export default function Home() {
   return (
     <>
       <h2>CREATE A NEW EMPLOYEE</h2>
+      <Modal message={modalMessage} visibility={modalVisibility} setVisibility={setModalVisibility}/>
       <form onSubmit={handleSubmit}>
         <TextInput name="First Name" setFunction={setFirstName} required />
         <TextInput name="Last Name" setFunction={setLastName} required />
         <DateInput name=" Date of Birth" setFunction={setBirthDate} />
-        <DateInput name=" Start Date" setFunction={setStartDate} />
+        <DateInput name=" Start Date" setFunction={setStartDate}  />
         <FieldSet name="Address">
-          <TextInput name="Street" setFunction={setStreet} />
-          <TextInput name="City" setFunction={setCity} />
+          <TextInput name="Street" setFunction={setStreet} required/>
+          <TextInput name="City" setFunction={setCity}required />
           <StateSelect setFunction={setState} />
           <ZipCodeInput name="Zip Code" setFunction={setZipCode} />
         </FieldSet>
