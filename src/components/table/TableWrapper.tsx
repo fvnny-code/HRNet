@@ -1,10 +1,10 @@
 
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 
-import SelectMaxEntries from "./SelectMaxEntries";
-import InputSearch from "./InputSearch";
-import EntriesCounter from "./EntriesCounter";
-import TablePagination from "./TablePagination";
+// import SelectMaxEntries from "./SelectMaxEntries";
+// import InputSearch from "./InputSearch";
+// import EntriesCounter from "./EntriesCounter";
+// import TablePagination from "./TablePagination";
 // import Table from "./Table";
 
 /**
@@ -13,7 +13,7 @@ import TablePagination from "./TablePagination";
 
 import "../../index.css"
 
-export default function TableWrapper({  items }: Props) {
+export default function TableWrapper() {
   // const cols: Array<string> = [
   //   "First Name",
   //   "Last Name",
@@ -25,34 +25,36 @@ export default function TableWrapper({  items }: Props) {
   //   "Zip Code",
   //   "Department",
   // ]
-  const [query, setQuery] = useState("");
-  const [maxEntries, setMaxEntries] = useState(10);
+  // const [query, setQuery] = useState("");
+  // const [maxEntries, setMaxEntries] = useState(10);
   // const [results, setResults] = useState(items.slice(0, 10));
-  const [resultLength, setResultLength] = useState(0);
-  const [currentPage, setCurrentPage] = useState(1);
+  // const [resultLength, setResultLength] = useState(0);
+  // const [currentPage, setCurrentPage] = useState(1);
 
-  useEffect(() => {
-    // filter results using the research query
-    const filteredItems = items.filter((properties) =>
-      properties.some((property) => property.includes(query))
-    );
-    setResultLength(filteredItems.length);
+  // useEffect(() => {
+  //   // filter results using the research query
+  //   const filteredItems = items.filter((properties) =>
+  //     properties.some((property) => property.includes(query))
+  //   );
+    // setResultLength(filteredItems.length);
     // Slice results using the max entries limit & the current page
     // const slicedItems = filteredItems.slice(
     //   maxEntries * currentPage - maxEntries,
     //   maxEntries * currentPage
     // );
     // setResults(slicedItems);
-  }, [query, maxEntries, currentPage]);
+  
+  
+  // [query, maxEntries, currentPage]);
 
   return (
     <section>
-      <div className="container">
+      {/* <div className="container">
         <SelectMaxEntries setFunction={setMaxEntries} />
         <InputSearch setFunction={setQuery}/>
-      </div>
+      </div> */}
       {/* <Table cols={cols} items={results} /> */}
-      <div className="container">
+      {/* <div className="container">
         <EntriesCounter
           resultLength={resultLength}
           maxEntries={maxEntries}
@@ -63,13 +65,15 @@ export default function TableWrapper({  items }: Props) {
           maxEntries={maxEntries}
           currentPage={currentPage} 
           setFunction={setCurrentPage}/>
-      </div>
+      </div> */}
+
+
     </section>
   );
 }
 
-interface Props {
-  id: string;
-  cols: Array<string>;
-  items: Array<Array<string>>;
-}
+// interface Props {
+//   id: string;
+//   cols: Array<string>;
+//   items: Array<Array<string>>;
+// }
