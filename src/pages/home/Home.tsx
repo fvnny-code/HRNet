@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { FunctionComponent, useState } from "react";
 
 import { useDispatch } from "react-redux";
 import DepartmentSelect from "../../components/form/selectPresets/DepartmentSelect";
@@ -7,12 +7,16 @@ import TextInput from "../../components/form/TextInput";
 import StateSelect from "../../components/form/selectPresets/StateSelect";
 import DateInput from "../../components/form/DateInput";
 import ZipCodeInput from "../../components/form/ZipCodeInput";
-import Modal from "../../components/modal/Modal";
+
+import { Modal} from "../../components/modal/Modal";
+import { useModal } from "../../components/modal/useModal";
 
 import "./home.css";
 import { addEmployee } from "../../store/EmployeesReducer";
 
-export default function Home() {
+export const Home: FunctionComponent = () => {
+  const { isShown, toggle } = useModal();
+
   // stores every input value
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -23,9 +27,9 @@ export default function Home() {
   const [state, setState] = useState("");
   const [zipCode, setZipCode] = useState("");
   const [dept, setDept] = useState("");
+  
   // modal
-  const [modalVisibility, setModalVisibility] = useState(false);
-  const [modalMessage, setModalMessage] = useState("");
+  // const [modalMessage, setModalMessage] = useState("");
 
   // on sbumit, add new employee to globalState
   const dispatch = useDispatch();
@@ -44,12 +48,9 @@ export default function Home() {
         department: dept,
       })
     );
-    //display a modal with a success message
-    setModalMessage("Employee " + firstName + " " + lastName + " created !");
-    setModalVisibility(true);
-
+ 
     const target = event.target as HTMLFormElement;
-
+    
     // reset the form
     target.reset();
   };
@@ -57,11 +58,7 @@ export default function Home() {
   return (
     <>
       <h2>CREATE A NEW EMPLOYEE</h2>
-      <Modal
-        message={modalMessage}
-        visibility={modalVisibility}
-        setVisibility={setModalVisibility}
-      />
+
       <form onSubmit={handleSubmit}>
         <TextInput name="First Name" setFunction={setFirstName} required />
         <TextInput name="Last Name" setFunction={setLastName} required />
@@ -74,10 +71,17 @@ export default function Home() {
           <ZipCodeInput name="Zip Code" setFunction={setZipCode} />
         </FieldSet>
         <DepartmentSelect setFunction={setDept} />
-        <button type="submit" value="Submit">
+        <button 
+        type="submit" 
+        value="Submit"
+        onClick={toggle}
+        >
           SAVE
         </button>
       </form>
+      {/* <Modal isShown={isShown} hide={toggle} message={"Employee " + firstName + " " + lastName + " created !"} /> */}
+            <Modal isShown={isShown} hide={toggle} message={"Employee " + firstName + " " + lastName + " created !"} />
+
     </>
   );
-}
+};
