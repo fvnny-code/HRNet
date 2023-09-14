@@ -4,18 +4,18 @@ import {
   useGlobalFilter,
   useSortBy,
   usePagination,
-  
 } from "react-table";
 
 // import MOCK_DATA from "./MOCK_DATA 2.json";
 import { COLUMNS } from "./Columns";
 // import { GlobalFilter } from "./GlobalFilter";
 import "./table.css";
+
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/Store";
 
 export const Table = () => {
-  const data = useSelector((store:RootState) => store.employees);
+  const data = useSelector((store: RootState) => store.employees);
 
   const columns = useMemo(() => COLUMNS, []);
 
@@ -40,6 +40,12 @@ export const Table = () => {
     //@ts-ignore
     pageOptions,
     //@ts-ignore
+    gotoPage,
+    //@ts-ignore
+    pageCount,
+    //@ts-ignore
+    setPageSize,
+    //@ts-ignore
     state,
     //@ts-ignore
     setGlobalFilter,
@@ -60,29 +66,40 @@ export const Table = () => {
   };
 
   //@ts-ignore
-  const { pageIndex } = state;
+  const { pageIndex, pageSize } = state;
 
   return (
     <>
       <div className="container">
+      <div className="flex-start">
+        <label htmlFor="page size">
+          {/* Show
+          <select className="btn-pagination">
+            <option value="10">10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+          </select> */}
+          <select
+            value={pageSize}
+            style={{ width: "120px", margin: "0 0.2rem" }}
+            onChange={(e) => setPageSize(Number(e.target.value))}
+          >
+            {[10, 25, 50].map((pageSize) => (
+              <option key={pageSize} value={pageSize}>
+                Show {pageSize}
+              </option>
+            ))}
+          </select>
+        </label>
+      </div>
         <input
           placeholder=" Search... "
           onChange={handleFilterInputChange}
           className="search-table"
         />
       </div>
-      <div>
-        <label htmlFor="number per page">
-          Show
-          <select >
-            <option value="10">10</option>
-            <option value="25">25</option>
-            <option value="50">50</option>
-            <option value="100">100</option>
-          </select>
-        </label>
-      </div>
-
+  
       <table {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => (
@@ -117,7 +134,7 @@ export const Table = () => {
           })}
         </tbody>
       </table>
-      <div className="container">
+      <div className="container pagination">
         <div className="flex-start">
           <span>
             Page{" "}
@@ -125,8 +142,40 @@ export const Table = () => {
               {pageIndex + 1} of {pageOptions.length}
             </strong>{" "}
           </span>
+          <span className="flex-start">
+            Go to page:{" "}
+            <input
+              type="number"
+              defaultValue={pageIndex + 1}
+              onChange={(e) => {
+                const pageNumber = e.target.value
+                  ? Number(e.target.value) - 1
+                  : 0;
+                gotoPage(pageNumber);
+              }}
+              style={{ width: "80px", margin: "0 0.2rem" }}
+              className="pagination"
+            />
+          </span>{" "}
+          {/* <select
+            value={pageSize}
+            style={{ width: "100px", margin: "0 0.2rem" }}
+            onChange={(e) => setPageSize(Number(e.target.value))}
+          >
+            {[10, 25, 50].map((pageSize) => (
+              <option key={pageSize} value={pageSize}>
+                Show {pageSize}
+              </option>
+            ))}
+          </select> */}
         </div>
-
+        <button
+          className="btn-pagination"
+          onClick={() => gotoPage(0)}
+          disabled={!canPreviousPage}
+        >
+          {"<<"}
+        </button>{" "}
         <button
           onClick={() => previousPage()}
           disabled={!canPreviousPage}
@@ -141,6 +190,13 @@ export const Table = () => {
         >
           Next
         </button>
+        <button
+          onClick={() => gotoPage(pageCount - 1)}
+          disabled={!canNextPage}
+          className="btn-pagination"
+        >
+          {">>"}
+        </button>{" "}
       </div>
     </>
   );

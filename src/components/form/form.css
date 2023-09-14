@@ -37,11 +37,11 @@ input[type="date"] {
     background-image: url("../../assets/calendar-days-solid.svg");
 
 }
-input[type="number"] {
+/* input[type="number"] {
  
     background-image: url("../../assets/sort-solid.svg");
 
-}
+} */
 
 fieldset {
   margin-top: 2rem;
