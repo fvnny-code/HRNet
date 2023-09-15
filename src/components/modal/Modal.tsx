@@ -6,20 +6,20 @@ import "./modal.css";
 
 export interface ModalProps {
   isShown: boolean;
-  hide: () => void;
+  onHide: () => void;
   message: string;
  
 }
 
 export const Modal: FunctionComponent<ModalProps> = ({
   isShown,
-  hide,
+  onHide,
   message,
 
 }) => {
   const onKeyDown = (event: KeyboardEvent) => {
     if (event.keyCode === 27 && isShown) {
-      hide();
+      onHide();
     }
   };
   useEffect(() => {
@@ -32,7 +32,7 @@ export const Modal: FunctionComponent<ModalProps> = ({
     };
   }, [isShown]);
   const modal = (
-    <div className="backdrop" onClick={hide}>
+    <div className="backdrop" onClick={ onHide}>
       <div
         className="wrapper"
         aria-modal
@@ -42,7 +42,7 @@ export const Modal: FunctionComponent<ModalProps> = ({
       >
         <div className="styledModal">
           <div className="header-modal">
-            <button className="closeButton" onClick={hide}>
+            <button className="closeButton" onClick={ onHide}>
               X
             </button>
           </div>

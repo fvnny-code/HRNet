@@ -4,6 +4,8 @@ import {
   useGlobalFilter,
   useSortBy,
   usePagination,
+  TableInstance,
+
 } from "react-table";
 
 // import MOCK_DATA from "./MOCK_DATA 2.json";
@@ -13,6 +15,29 @@ import "./table.css";
 
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/Store";
+import { Employee } from "../../types";
+
+type TableTypeWorkaround<T extends Object> = TableInstance<T> & {
+  gotoPage: (index: number) => void;
+  headerGroups: {
+    getSortByToggleProps:Function;
+
+  }[];
+  page: number;
+  nextPage: number | null;
+  previousPage: number | null;
+  canNextPage: boolean;
+  canPreviousPage: boolean;
+  pageOptions: object;
+  pageCount: number;
+  setPageSize: (pageSize: number) => void;
+  setGlobalFilter: Function;
+
+  state: {
+    pageIndex: number;
+    pageSize: number;
+  };
+};
 
 export const Table = () => {
   const data = useSelector((store: RootState) => store.employees);
@@ -27,29 +52,18 @@ export const Table = () => {
     headerGroups,
     // rows,
     prepareRow,
-    //@ts-ignore
     page,
-    //@ts-ignore
     nextPage,
-    //@ts-ignore
     previousPage,
-    //@ts-ignore
     canNextPage,
-    //@ts-ignore
     canPreviousPage,
-    //@ts-ignore
     pageOptions,
-    //@ts-ignore
     gotoPage,
-    //@ts-ignore
     pageCount,
-    //@ts-ignore
     setPageSize,
-    //@ts-ignore
     state,
-    //@ts-ignore
     setGlobalFilter,
-  } = useTable(
+  } = useTable<Employee>(
     {
       //@ts-ignore
       columns,
@@ -58,48 +72,47 @@ export const Table = () => {
     useGlobalFilter,
     useSortBy,
     usePagination
-  );
+  ) as TableTypeWorkaround<Employee>;
 
   const handleFilterInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.currentTarget;
     setGlobalFilter(value);
   };
 
-  //@ts-ignore
   const { pageIndex, pageSize } = state;
 
   return (
     <>
       <div className="container">
-      <div className="flex-start">
-        <label htmlFor="page size">
-          {/* Show
+        <div className="flex-start">
+          <label htmlFor="page size">
+            {/* Show
           <select className="btn-pagination">
             <option value="10">10</option>
             <option value="25">25</option>
             <option value="50">50</option>
             <option value="100">100</option>
           </select> */}
-          <select
-            value={pageSize}
-            style={{ width: "120px", margin: "0 0.2rem" }}
-            onChange={(e) => setPageSize(Number(e.target.value))}
-          >
-            {[10, 25, 50].map((pageSize) => (
-              <option key={pageSize} value={pageSize}>
-                Show {pageSize}
-              </option>
-            ))}
-          </select>
-        </label>
-      </div>
+            <select
+              value={pageSize}
+              style={{ width: "120px", margin: "0 0.2rem" }}
+              onChange={(e) => setPageSize(Number(e.target.value))}
+            >
+              {[10, 25, 50].map((pageSize) => (
+                <option key={pageSize} value={pageSize}>
+                  Show {pageSize}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
         <input
           placeholder=" Search... "
           onChange={handleFilterInputChange}
           className="search-table"
         />
       </div>
-  
+
       <table {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => (
