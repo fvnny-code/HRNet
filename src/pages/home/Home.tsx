@@ -63,12 +63,9 @@ export const Home: FunctionComponent = () => {
     if (lastName.trim().length <= 2) {
       return false;
     }
-
     if (isNaN(new Date(birthDate))) {
       return false;
     }
-
-
     if (isNaN(new Date(startDate))) {
       return false;
     }
@@ -112,7 +109,6 @@ export const Home: FunctionComponent = () => {
           SAVE
         </button>
       </form>
-      {/* <Modal isShown={isShown} hide={toggle} message={"Employee " + firstName + " " + lastName + " created !"} /> */}
       <Modal
         isShown={isShown}
         onHide={toggle}
