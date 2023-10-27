@@ -12,9 +12,17 @@
 .search-table {
   max-width: 40%;
 }
+
+.input-pagination{
+  width: 80px;
+  margin: 0 0.2rem;
+}
+.select-pagination{
+  width: 120px;
+  margin: 0 0.2rem;
+}
 .btn-pagination {
   width: 7rem;
-  /* padding-right: 0.5rem; */
   border: none;
   text-align: center;
 }
@@ -54,7 +62,7 @@ table {
 }
 thead {
   background-color: var(--light-green);
-  opacity: 0.6;
+
 }
 tbody {
   border: 2px var(--green-highlight) solid;

@@ -5,7 +5,6 @@ import {
   useSortBy,
   usePagination,
   TableInstance,
-
 } from "react-table";
 
 // import MOCK_DATA from "./MOCK_DATA 2.json";
@@ -20,8 +19,7 @@ import { Employee } from "../../types";
 type TableTypeWorkaround<T extends Object> = TableInstance<T> & {
   gotoPage: (index: number) => void;
   headerGroups: {
-    getSortByToggleProps:Function;
-
+    getSortByToggleProps: Function;
   }[];
   page: number;
   nextPage: number | null;
@@ -86,16 +84,9 @@ export const Table = () => {
       <div className="container">
         <div className="flex-start">
           <label htmlFor="page size">
-            {/* Show
-          <select className="btn-pagination">
-            <option value="10">10</option>
-            <option value="25">25</option>
-            <option value="50">50</option>
-            <option value="100">100</option>
-          </select> */}
             <select
               value={pageSize}
-              style={{ width: "120px", margin: "0 0.2rem" }}
+              className="select-pagination"
               onChange={(e) => setPageSize(Number(e.target.value))}
             >
               {[10, 25, 50].map((pageSize) => (
@@ -118,14 +109,23 @@ export const Table = () => {
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
-                <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                <th
+                  {
+                    //@ts-ignore
+                    ...column.getHeaderProps(column.getSortByToggleProps())
+                  }
+                >
                   {column.render("Header")}
                   <span>
-                    {column.isSorted
-                      ? column.isSortedDesc
-                        ? " 🔽"
-                        : " 🔼"
-                      : " "}
+                    {
+                      //@ts-ignore
+                      column.isSorted
+                        ? //@ts-ignore
+                          column.isSortedDesc
+                          ? " 🔽"
+                          : " 🔼"
+                        : " "
+                    }
                   </span>
                 </th>
               ))}
@@ -133,18 +133,24 @@ export const Table = () => {
           ))}
         </thead>
         <tbody {...getTableBodyProps()}>
-          {page.map((row) => {
-            prepareRow(row);
-            return (
-              <tr {...row.getRowProps()}>
-                {row.cells.map((cell) => {
-                  return (
-                    <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
-                  );
-                })}
-              </tr>
-            );
-          })}
+          {
+            //@ts-ignore
+            page.map((row) => {
+              prepareRow(row);
+              return (
+                <tr {...row.getRowProps()}>
+                  {
+                    //@ts-ignore
+                    row.cells.map((cell) => {
+                      return (
+                        <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                      );
+                    })
+                  }
+                </tr>
+              );
+            })
+          }
         </tbody>
       </table>
       <div className="container pagination">
@@ -152,7 +158,11 @@ export const Table = () => {
           <span>
             Page{" "}
             <strong>
-              {pageIndex + 1} of {pageOptions.length}
+              {pageIndex + 1} of{" "}
+              {
+                //@ts-ignore
+                pageOptions.length
+              }
             </strong>{" "}
           </span>
           <span className="flex-start">
@@ -166,21 +176,9 @@ export const Table = () => {
                   : 0;
                 gotoPage(pageNumber);
               }}
-              style={{ width: "80px", margin: "0 0.2rem" }}
-              className="pagination"
+              className="input-pagination pagination"
             />
           </span>{" "}
-          {/* <select
-            value={pageSize}
-            style={{ width: "100px", margin: "0 0.2rem" }}
-            onChange={(e) => setPageSize(Number(e.target.value))}
-          >
-            {[10, 25, 50].map((pageSize) => (
-              <option key={pageSize} value={pageSize}>
-                Show {pageSize}
-              </option>
-            ))}
-          </select> */}
         </div>
         <button
           className="btn-pagination"
@@ -190,14 +188,20 @@ export const Table = () => {
           {"<<"}
         </button>{" "}
         <button
-          onClick={() => previousPage()}
+          onClick={() => {
+            //@ts-ignore
+            previousPage();
+          }}
           disabled={!canPreviousPage}
           className="btn-pagination"
         >
           Previous
         </button>
         <button
-          onClick={() => nextPage()}
+          onClick={() => {
+            //@ts-ignore
+            nextPage();
+          }}
           disabled={!canNextPage}
           className="btn-pagination"
         >
@@ -214,38 +218,3 @@ export const Table = () => {
     </>
   );
 };
-
-// export default function Table({ cols, items }: Props) {
-
-//   return (
-//     <table>
-//       <thead>
-//         <tr>
-//           {cols.map((col, index) => {
-//             return <th key={index}>{col}</th>;
-//           })}
-//         </tr>
-//       </thead>
-//       <tbody>
-//         {
-//             items.map((item, index)=>{
-//                 return <tr key={index}>
-//                     {
-//                         item.map((value, index)=>{
-//                             return<td key={index}>{value}</td>
-//                         })
-//                     }
-
-//               </tr>
-//             })
-//         }
-
-//       </tbody>
-//     </table>
-//   );
-// }
-
-// interface Props {
-//   cols: Array<string>;
-//   items: Array<Array<string>>;
-// }

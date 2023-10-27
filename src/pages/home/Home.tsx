@@ -30,8 +30,6 @@ export const Home: FunctionComponent = () => {
   const [zipCode, setZipCode] = useState("");
   const [dept, setDept] = useState("");
 
-  // modal
-  // const [modalMessage, setModalMessage] = useState("");
 
   // on sbumit, add new employee to globalState
   const dispatch = useDispatch();
@@ -65,9 +63,11 @@ export const Home: FunctionComponent = () => {
     if (lastName.trim().length <= 2) {
       return false;
     }
+    //@ts-ignore 
     if (isNaN(new Date(birthDate))) {
       return false;
     }
+    //@ts-ignore 
     if (isNaN(new Date(startDate))) {
       return false;
     }
