@@ -1,0 +1,50 @@
+.wrapper {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 700;
+  width: 50%;
+  outline: 0;
+}
+.backdrop {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 500;
+}
+.styledModal {
+  z-index: 100;
+  background: white;
+  position: relative;
+  margin: auto;
+  border-radius: 8px;
+  padding-bottom: 1.5rem;
+}
+.header-modal {
+  border-radius: 8px 8px 0 0;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 0.3rem;
+}
+.closeButton {
+  font-size: 1rem;
+  border: none;
+  border-radius: 3px;
+  margin-right: 0.5rem;
+  width: 20px;
+  background: none;
+}
+.closeMoutton:hover {
+  cursor: pointer;
+}
+.content {
+  padding: 10px;
+  text-align: center;
+  max-height: 30rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+}

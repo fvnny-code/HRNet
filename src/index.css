@@ -1,69 +1,143 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz@9..40&display=swap");
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+:root {
+  margin: 0;
+  padding: 0;
+
+  /* height: 100%; */
+
+  /* Text configuration */
+
+  --body-font: "DM sans";
+  --title-font: "Montserrat";
+
+  --body-font-weight: 400;
+  --link-font-weight: 900;
+
+  --body-font-size: 1.25rem;
+
+  --body-line-height: 1.5rem;
+  --title-line-height: 1.75;
+  --header-line-height: 5.375;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  /* Colors */
+  color-scheme: light dark;
+
+  --red-highlight: #d2483d;
+  --red-hover: #e37c41;
+  --green-highlight: #687b1e;
+  --green-hover: #97b227;
+  --light-green: #e4f5c0;
+  --blackish: #242424;
+  --white: #ffffff;
+
+  --select-focus: var(--green-highlight);
+  --select-arrow: var(--green-highlight);
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+#root {
+  margin: auto;
+  text-align: center;
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  background-color: var(--white);
+  color: var(--blackish);
+  font-family: var(--body-font);
+  font-size: var(--body-font-size);
+  margin: 0 auto;
+}
+
+a {
+  font-weight: var(--link-font-weight);
+  color: var(--green-highlight);
+  transition: text-decoration 0.5s;
+}
+a:hover {
+  color: var(--green-hover);
+  text-decoration: underline var(--green-hover);
+  text-decoration-thickness: 0.1rem;
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-size: 1.2em;
+  text-transform: uppercase;
+  position: absolute;
+  left: 10rem;
+  font-family: var(--title-font);
+  color: var(--green-highlight);
+}
+
+h2 {
+  font-size: 2em;
+  line-height: var(--title-line-height);
+  font-family: var(--title-font);
+  color: var(--blackish);
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
+  border-radius: 15px;
+  border: 4px solid var(--green-highlight);
+  padding: 0.5em .8em;
+  margin: 1rem auto;
+  width: 40%;
   font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  font-weight: 600;
+  background-color: transparent;
+  color: var(--green-highlight);
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: background-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  background-color: var(--red-hover);
+  color: var(--white);
 }
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+button:disabled {
+  color: var(--light-green);
+}
+
+.logo {
+  height: 3em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+
+/* spining logo */
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
   }
-  a:hover {
-    color: #747bff;
+  to {
+    transform: rotate(360deg);
   }
-  button {
-    background-color: #f9f9f9;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .logo {
+    animation: logo-spin infinite 20s linear;
   }
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 }
