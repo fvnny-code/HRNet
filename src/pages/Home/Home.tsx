@@ -11,7 +11,7 @@ import ZipCodeInput from "../../components/form/ZipCodeInput";
 // import { Modal } from "../../components/modal/Modal";
 // import { useModal } from "../../components/modal/useModal";
 
-import "./home.css";
+import "./Home.css";
 import { addEmployee } from "../../store/EmployeesReducer";
 import { Modal } from "hrnet-library2";
 import { useModal } from "hrnet-library2";
