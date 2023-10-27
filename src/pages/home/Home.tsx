@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from "react";
+import React, { useState } from "react";
 
 import { useDispatch } from "react-redux";
 import DepartmentSelect from "../../components/form/selectPresets/DepartmentSelect";
@@ -16,7 +16,7 @@ import { addEmployee } from "../../store/EmployeesReducer";
 import { Modal } from "hrnet-library2";
 import { useModal } from "hrnet-library2";
 
-export const Home: FunctionComponent = () => {
+export const Home = () => {
   const { isShown, toggle } = useModal();
 
   // stores every input value
