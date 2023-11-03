@@ -8,9 +8,6 @@ import StateSelect from "../../components/form/selectPresets/StateSelect";
 import DateInput from "../../components/form/DateInput";
 import ZipCodeInput from "../../components/form/ZipCodeInput";
 
-// import { Modal } from "../../components/modal/Modal";
-// import { useModal } from "../../components/modal/useModal";
-
 import "./Home.css";
 import { addEmployee } from "../../store/EmployeesReducer";
 import { Modal } from "hrnet-library2";
