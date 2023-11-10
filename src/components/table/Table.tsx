@@ -83,8 +83,9 @@ export const Table = () => {
     <>
       <div className="container">
         <div className="flex-start">
-          <label htmlFor="page size">
+          <label htmlFor="pageSize">
             <select
+            id="pageSize"
               value={pageSize}
               className="select-pagination"
               onChange={(e) => setPageSize(Number(e.target.value))}
@@ -165,9 +166,10 @@ export const Table = () => {
               }
             </strong>{" "}
           </span>
-          <span className="flex-start">
+          <label htmlFor="goToPage" className="flex-start">
             Go to page:{" "}
             <input
+            id="goToPage"
               type="number"
               defaultValue={pageIndex + 1}
               onChange={(e) => {
@@ -178,7 +180,7 @@ export const Table = () => {
               }}
               className="input-pagination pagination"
             />
-          </span>{" "}
+          </label>{" "}
         </div>
         <button
           className="btn-pagination"
