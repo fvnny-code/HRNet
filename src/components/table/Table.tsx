@@ -83,8 +83,8 @@ export const Table = () => {
     <>
       <div className="container">
         <div className="flex-start">
-          <label htmlFor="pageSize">
-            <select
+          <label htmlFor="pageSize">show</label>
+          <select
             id="pageSize"
               value={pageSize}
               className="select-pagination"
@@ -92,11 +92,10 @@ export const Table = () => {
             >
               {[10, 25, 50].map((pageSize) => (
                 <option key={pageSize} value={pageSize}>
-                  Show {pageSize}
+                  {pageSize}
                 </option>
               ))}
             </select>
-          </label>
         </div>
         <input
           placeholder=" Search... "
