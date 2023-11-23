@@ -1,6 +1,3 @@
-/**
- * All types used in the App
- */
 
 export interface Employee {
     

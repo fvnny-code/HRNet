@@ -7,9 +7,8 @@ import {
   TableInstance,
 } from "react-table";
 
-// import MOCK_DATA from "./MOCK_DATA 2.json";
 import { COLUMNS } from "./Columns";
-// import { GlobalFilter } from "./GlobalFilter";
+
 import "./table.css";
 
 import { useSelector } from "react-redux";
@@ -41,9 +40,7 @@ export const Table = () => {
   const data = useSelector((store: RootState) => store.employees);
 
   const columns = useMemo(() => COLUMNS, []);
-
-  // const data = useMemo(() => MOCK_DATA, []);
-
+  
   const {
     getTableProps,
     getTableBodyProps,
@@ -86,16 +83,16 @@ export const Table = () => {
           <label htmlFor="pageSize">show</label>
           <select
             id="pageSize"
-              value={pageSize}
-              className="select-pagination"
-              onChange={(e) => setPageSize(Number(e.target.value))}
-            >
-              {[10, 25, 50].map((pageSize) => (
-                <option key={pageSize} value={pageSize}>
-                  {pageSize}
-                </option>
-              ))}
-            </select>
+            value={pageSize}
+            className="select-pagination"
+            onChange={(e) => setPageSize(Number(e.target.value))}
+          >
+            {[10, 25, 50].map((pageSize) => (
+              <option key={pageSize} value={pageSize}>
+                {pageSize}
+              </option>
+            ))}
+          </select>
         </div>
         <input
           placeholder=" Search... "
@@ -168,7 +165,7 @@ export const Table = () => {
           <label htmlFor="goToPage" className="flex-start">
             Go to page:{" "}
             <input
-            id="goToPage"
+              id="goToPage"
               type="number"
               defaultValue={pageIndex + 1}
               onChange={(e) => {

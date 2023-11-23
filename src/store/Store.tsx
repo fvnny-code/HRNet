@@ -4,30 +4,24 @@ import { combineReducers } from "@reduxjs/toolkit";
 import EmployeesReducer from "./EmployeesReducer";
 import { persistReducer, persistStore } from "redux-persist";
 
-import storage from "redux-persist/lib/storage"
+import storage from "redux-persist/lib/storage";
 import thunk from "redux-thunk";
-
-
 
 const persistConfig = {
   key: "store",
-  storage
-
-}
+  storage,
+};
 
 const reducer = combineReducers({
-  employees : EmployeesReducer
+  employees: EmployeesReducer,
 });
 
-const persistedReducer = persistReducer(persistConfig, reducer)
+const persistedReducer = persistReducer(persistConfig, reducer);
 
 export const store = configureStore({
-  reducer : persistedReducer,
-  middleware: [thunk]
+  reducer: persistedReducer,
+  middleware: [thunk],
 });
 
-export const persistStor= persistStore(store)
-export type RootState = ReturnType<typeof store.getState>  
-
-
- 
+export const persistStor = persistStore(store);
+export type RootState = ReturnType<typeof store.getState>;
